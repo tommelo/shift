@@ -33,8 +33,8 @@ This is small cli tool that performs alphanumeric char shifting.
 
 import argparse
 import sys
+from formatter import CustomFormatter
 from alphanumeric import Alphanumeric
-from formater import CustomFormatter
 
 parser = argparse.ArgumentParser(prog='shift', usage='shift alpha <options>', formatter_class=CustomFormatter)
 parser.add_argument("alpha", nargs="+", help="the alphanumeric string")
