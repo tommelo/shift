@@ -46,7 +46,7 @@ python shift.py abc123 -p 2
 ```
 
 ### -r, --range
-Performs number shifting in a limited range of numbers. Each number of the range must be specified with a space sepator.
+Performs number shifting in a limited range of numbers. Each number of the range must be specified with a space separator.
 ```shell
 python shift.py abc123 -p 4 -r 1 2 3 4 5
 
