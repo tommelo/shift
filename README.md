@@ -1,5 +1,5 @@
 # shift
-Alphanumeric shift made easy
+Alphanumeric shifting made easy.
 
 ## About
 **shift** is a cli tool that makes it easier to perform alphanumeric char shifting.
