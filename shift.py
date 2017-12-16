@@ -37,7 +37,7 @@ from formatter import CustomFormatter
 from alphanumeric import Alphanumeric
 
 parser = argparse.ArgumentParser(prog='shift', usage='shift alpha <options>', formatter_class=CustomFormatter)
-parser.add_argument("alpha", nargs="+", help="the alphanumeric string")
+parser.add_argument("alpha", nargs="?", help="the alphanumeric string")
 parser.add_argument("-p", "--positions", metavar="", help="the number of positions to shift", type=int)
 parser.add_argument("-r", "--range", nargs="+", metavar="", help="a range of numbers separated by space")
 parser.add_argument("--backwards", action="store_true", help="performs a backward shift")
@@ -82,6 +82,11 @@ def is_piped_output():
 def main(args):
     """Executes an alphanumeric string shift"""
 
+    if not args.alpha:
+        sys.stdout.write("[!] No alphanumeric string given")
+        sys.stdout.write("\n")
+        sys.exit(1)
+
     nrange = None
     if args.range:
         nrange = map(int, args.range)
@@ -104,17 +109,12 @@ def main(args):
 
 if __name__ == "__main__":
     try:
+        alpha = None
         if is_piped_input():
             alpha = sys.stdin.read().strip()
-            cli_args = argparse.Namespace(
-                alpha=alpha,
-                positions=1,
-                range=None,
-                backwards=False,
-                ignore_numbers=False,
-                ignore_letters=False)
-        else:
-            cli_args = parser.parse_args()
+
+        cli_args = parser.parse_args()
+        cli_args.alpha = cli_args.alpha or alpha
 
         main(cli_args)
     except KeyboardInterrupt:
